@@ -1,3 +1,4 @@
-vless://f83d8e60-f039-45c8-95d2-2a44c59025f6@freetg.strettenvpn.com:9999?encryption=none&security=none&type=tcp#v2go%20%7C%20%F0%9F%87%A6%F0%9F%87%AA%20AE%20%7C%20VLESS%20%7C%20162
-vless://febfeec2-9a21-4afc-9edb-0833466672cd@31.58.181.88:8443?encryption=none&flow=xtls-rprx-vision&fp=&pbk=AERbWB2uslqIzm1hSlOZZEH3Y9qg_zlWRRyLfh97kXc&security=reality&sni=tradingview.com&type=tcp#v2go%20%7C%20%F0%9F%87%A6%F0%9F%87%AA%20AE%20%7C%20VLESS%20%7C%20252
-vless://39947382-3212-41c9-bc3a-589574ac8b23@84.235.244.108:22573?security=none&type=ws&host=uae.unixzone.us&path=%2F#v2go%20%7C%20%F0%9F%87%A6%F0%9F%87%AA%20AE%20%7C%20VLESS%20%7C%20824
+vless://39947382-3212-41c9-bc3a-589574ac8b23@84.235.244.108:22573?security=none&type=ws&host=uae.unixzone.us&path=%2F#v2go%20%7C%20%F0%9F%87%A6%F0%9F%87%AA%20AE%20%7C%20VLESS%20%7C%20735
+vless://98d5730d-ea53-4c90-9fa5-c48e0fc95413@199.232.78.150:443?path=/&security=tls&encryption=none&host=SvnTeamChannel.global.ssl.fastly.net&type=ws&sni=ssl.fastly.com#v2go%20%7C%20%F0%9F%87%A6%F0%9F%87%AA%20AE%20%7C%20VLESS%20%7C%20821
+vless://f83d8e60-f039-45c8-95d2-2a44c59025f6@217.60.99.49:9999?encryption=none&path=/#v2go%20%7C%20%F0%9F%87%A6%F0%9F%87%AA%20AE%20%7C%20VLESS%20%7C%20935
+vless://febfeec2-9a21-4afc-9edb-0833466672cd@31.58.181.88:8443?encryption=none&flow=xtls-rprx-vision&fp=&pbk=AERbWB2uslqIzm1hSlOZZEH3Y9qg_zlWRRyLfh97kXc&security=reality&sni=tradingview.com&type=tcp#v2go%20%7C%20%F0%9F%87%A6%F0%9F%87%AA%20AE%20%7C%20VLESS%20%7C%20940
