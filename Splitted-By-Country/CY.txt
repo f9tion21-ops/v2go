@@ -1,1 +1,1 @@
-vless://7a657573-2b15-7da4-f946-ea01958fc999@195.85.59.55:8443?security=tls&type=ws&path=/stream/PANEL_ZEUS/ea01958fc999/loc-0&host=amz7goecubds.qiz56mebupbs.workers.dev&packetEncoding=xudp&sni=amz7goecubds.qiz56mebupbs.workers.dev&fp=qq#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BE%20CY%20%7C%20VLESS%20%7C%20424
+vless://2e79f3ca-b8db-4d4d-a96e-8f7313480696@168.222.203.14:4100?path=/v1&security=none&encryption=none&host=live.ok.ru&type=ws#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BE%20CY%20%7C%20VLESS%20%7C%20551
