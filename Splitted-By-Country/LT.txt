@@ -1,1 +1,0 @@
-vless://96b308b3-6aaa-424b-a52c-4e27617fbddf@62.152.58.45:443?type=raw&security=reality&encryption=none&sni=max.ru&fp=firefox&pbk=8lw0A9bkJwt3sX_Jgb5RzieKlqojPg-6RV9Wj1ewtg4&sid=27e53bbcab7593d7&spx=%2F&flow=xtls-rprx-vision&headerType=none#v2go%20%7C%20%F0%9F%87%B1%F0%9F%87%B9%20LT%20%7C%20VLESS%20%7C%201504
