@@ -1,2 +1,0 @@
-vless://2e79f3ca-b8db-4d4d-a96e-8f7313480696@168.222.203.14:4100?path=/v1&security=none&encryption=none&host=live.ok.ru&type=ws#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BE%20CY%20%7C%20VLESS%20%7C%20519
-vless://d97a084e-f7b2-421c-b7fc-7bce5ad2e066@1771d9092fda.valzema.ir:8080?security=none&encryption=none&host=play-fe.googleapis.com&headerType=http&type=tcp#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BE%20CY%20%7C%20VLESS%20%7C%20599
