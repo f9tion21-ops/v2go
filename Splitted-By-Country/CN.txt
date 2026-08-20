@@ -1,0 +1,1 @@
+trojan://Telegram_healer_config@soskeynets.z6-0hlnubjibwzpa85.workers.dev:443?path=/tr/GaQvfFwT5sWgVxHig8YaXjtiuQPZNI?ed=2560&security=tls&alpn=http/1.1&insecure=0&host=6m1rgyieclmrx9hef1.z6-0hlnubjibwzpa85.workers.dev&fp=chrome&type=ws&allowInsecure=0&sni=6m1rGyIEclMRx9HeF1.Z6-0hlNUbJIBwZPa85.wOrKerS.DEV#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%B3%20CN%20%7C%20TROJAN%20%7C%201271

@@ -1,2 +1,1 @@
-vless://2e79f3ca-b8db-4d4d-a96e-8f7313480696@168.222.203.14:4100?&sni=live.ok.ru&type=ws&headerType=none&path=%2Fv1#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BE%20CY%20%7C%20VLESS%20%7C%201142
-vless://e7c15d94-3d4a-445d-9043-17dbc59e3e3d@109.61.108.78:20468?encryption=none&fp=firefox&pbk=fZN3RaPoUpvSEE07sPTzvQva27vY3ooA3RYci5KL42Q&security=reality&sid=a198d287017f32&sni=www.vk.com&type=raw#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BE%20CY%20%7C%20VLESS%20%7C%201468
+vless://2e79f3ca-b8db-4d4d-a96e-8f7313480696@168.222.203.14:4100?&sni=live.ok.ru&type=ws&headerType=none&path=%2Fv1#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BE%20CY%20%7C%20VLESS%20%7C%201422
