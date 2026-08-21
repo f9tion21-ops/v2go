@@ -1,1 +1,0 @@
-vless://20e295db-a6af-4006-bfd6-91453f169968@188.114.97.6:443?encryption=none&security=tls&sni=057.ElecTRocElLco-Cf-057.wOrKeRs.dEv&type=ws&host=057.electrocellco-cf-057.workers.dev&path=/eyJqdW5rIjoiSFM1N0lLQmx2UU1qRzlnTiIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbXX0%3D&packetEncoding=xudp#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%B3%20CN%20%7C%20VLESS%20%7C%201273
