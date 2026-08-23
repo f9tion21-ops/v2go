@@ -1,2 +1,1 @@
-trojan://CJ4fBUazRDFd62OxsdClTw%3D%3D@212.192.210.192:14078?host=&path=%2F&security=none&type=ws#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BF%20CZ%20%7C%20TROJAN%20%7C%20698
-vless://a95974c3-29ed-4548-ab42-b588b321a5ce@201.24.53.247:2084?type=tcp&security=reality&sni=www.rumedia-cdn.com&pbk=mrsI2kSF8FmNnFKn_-bpDU8VS6Tews7wkABJGdwMUAg&sid=3578bd8a4032dcab&fp=qq&spx=%2F&encryption=none&flow=xtls-rprx-vision#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BF%20CZ%20%7C%20VLESS%20%7C%201164
+trojan://CJ4fBUazRDFd62OxsdClTw%3D%3D@212.192.210.192:14078?host=&path=%2F&security=none&type=ws#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BF%20CZ%20%7C%20TROJAN%20%7C%20486
