@@ -1,2 +1,1 @@
-vless://4ff70740-8c80-48ae-985f-2afe4924e908@104.18.32.47:8443?encryption=none&type=ws&host=pubb.clnahanpnln.workers.dev&path=%2Fsync&security=tls&fp=chrome&sni=pubb.clnahanpnln.workers.dev#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%B3%20CN%20%7C%20VLESS%20%7C%20751
-vless://e11664a1-39e9-4dd8-a432-b712ec423262@104.19.1.100:2082?encryption=none&type=ws&host=tianshu.kevqwkt451.workers.dev&path=%2F%3Fed%3D2560&security=none#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%B3%20CN%20%7C%20VLESS%20%7C%201191
+vless://e11664a1-39e9-4dd8-a432-b712ec423262@104.19.1.100:2082?encryption=none&type=ws&host=tianshu.kevqwkt451.workers.dev&path=%2F%3Fed%3D2560&security=none#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%B3%20CN%20%7C%20VLESS%20%7C%201115
