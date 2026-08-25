@@ -1,1 +1,2 @@
-vless://a5194487-9b9a-462f-a047-ac7580d80201@167.104.104.138:8443?encryption=none&type=ws&path=%2F&security=tls&fp=firefox&sni=n.tmkkarss.online#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BF%20CZ%20%7C%20VLESS%20%7C%20621
+vless://9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6@188.214.35.66:443?&security=tls&fp=chrome&sni=8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr&type=ws&headerType=none&host=8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr&path=/pg/10086-dfc816f117c49173#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BF%20CZ%20%7C%20VLESS%20%7C%20164
+vless://a5194487-9b9a-462f-a047-ac7580d80201@167.104.104.138:8443?encryption=none&type=ws&path=%2F&security=tls&fp=firefox&sni=n.tmkkarss.online#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BF%20CZ%20%7C%20VLESS%20%7C%20634
