@@ -1,2 +1,4 @@
-trojan://7e70223b-f331-41d5-9313-02b8d2df2885@kkvlvvq-a.catcat321.com:20065?sni=hk.catxstar.com#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B9%20IT%20%7C%20TROJAN%20%7C%209
-trojan://7e70223b-f331-41d5-9313-02b8d2df2885@45.67.201.210:20065/?type=tcp&security=tls&sni=hk.catxstar.com&allowInsecure=1#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B9%20IT%20%7C%20TROJAN%20%7C%20398
+trojan://7e70223b-f331-41d5-9313-02b8d2df2885@kkvlvvq-a.catcat321.com:20065?allowInsecure=1&sni=hk.catxstar.com#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B9%20IT%20%7C%20TROJAN%20%7C%20106
+trojan://7e70223b-f331-41d5-9313-02b8d2df2885@157.254.38.210:20065?allowInsecure=1&insecure=1&type=tcp&security=tls&sni=hk.catxstar.com&fp=chrome&alpn=http/1.1#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B9%20IT%20%7C%20TROJAN%20%7C%20425
+trojan://7e70223b-f331-41d5-9313-02b8d2df2885@45.67.201.210:20065/?type=tcp&security=tls&sni=hk.catxstar.com&allowInsecure=1#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B9%20IT%20%7C%20TROJAN%20%7C%20426
+trojan://7e70223b-f331-41d5-9313-02b8d2df2885@d3.catcat321.com:20065?allowInsecure=1&insecure=1&type=tcp&security=tls&sni=hk.catxstar.com#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B9%20IT%20%7C%20TROJAN%20%7C%20427
