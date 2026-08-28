@@ -1,2 +1,0 @@
-vless://07780c89-ec2f-4510-ad40-5a010e13672e@150.40.117.95:8443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=eBYPMjiqvCw54ofTrEZ9dthv5dZ0xNDKXuvuTozPvBw&sid=c6&sni=www.cloudflare.com#v2go%20%7C%20%F0%9F%87%AD%F0%9F%87%BA%20HU%20%7C%20VLESS%20%7C%20303
-vless://f3b1c813-29b6-4a95-9bb4-5ef4e529af0d@150.40.117.221:2053?type=grpc&security=reality&fp=firefox&pbk=O0MpmBXVrm3FHNJjenGztxKsvVIv3OldTVL_p5eBTGI&sid=25&sni=www.oracle.com&serviceName=grpc#v2go%20%7C%20%F0%9F%87%AD%F0%9F%87%BA%20HU%20%7C%20VLESS%20%7C%20538
