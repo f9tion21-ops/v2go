@@ -1,1 +1,1 @@
-vless://423b1d79-08c4-403f-9d5e-c541f791b55f@87.58.206.98:8443?security=reality&encryption=none&pbk=gc9oXe37KCCm3J1dJ03wdGsnxPBdeEkRPOvl_t-vfVM&headerType=none&type=tcp&flow=xtls-rprx-vision&sni=auto.cendora.ru&sid=a7f3c91b2e6d84c0&fp=chrome#v2go%20%7C%20%F0%9F%87%A9%F0%9F%87%B0%20DK%20%7C%20VLESS%20%7C%20246
+vless://c68e203b-2ba9-4586-bc43-029b20a5111c@panel.an0nymousteam.qd.je:443?type=tcp&security=reality&sni=yt.be&fp=chrome&flow=xtls-rprx-vision&pbk=LvIQyEzdMEvkPimuLuzP3VctDadFFgvieDEMRy2da0c&sid=fc#v2go%20%7C%20%F0%9F%87%A9%F0%9F%87%B0%20DK%20%7C%20VLESS%20%7C%20754

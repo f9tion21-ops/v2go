@@ -1,0 +1,1 @@
+vless://0d46a6ae-ea65-4381-9456-2ded7e43f6a7@139.177.103.135:8443?encryption=none&security=reality&sni=tesla.com&flow=xtls-rprx-vision&type=tcp&pbk=LiSrIOq9pojF5iZc2c660LUAESwEWbxzt1YR96xz4k4&fp=chrome#v2go%20%7C%20%F0%9F%87%B2%F0%9F%87%BD%20MX%20%7C%20VLESS%20%7C%20826
