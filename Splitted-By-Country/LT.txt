@@ -1,1 +1,1 @@
-trojan://humanity@195.181.244.216:443?sni=www.calmlunch.com&type=ws&path=/assignment&fp=chrome#v2go%20%7C%20%F0%9F%87%B1%F0%9F%87%B9%20LT%20%7C%20TROJAN%20%7C%20561
+vless://c304b025-166e-40b4-bf00-17ab97d130e5@95.129.236.216:443?type=ws&security=tls&encryption=none&path=%2Forigin%2F190546791%2Ffetch&host=cdnguard.org&sni=cdnguard.org&fp=firefox&alpn=http%2F1.1&headerType=none#v2go%20%7C%20%F0%9F%87%B1%F0%9F%87%B9%20LT%20%7C%20VLESS%20%7C%20797
