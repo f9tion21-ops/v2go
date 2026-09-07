@@ -1,2 +1,1 @@
-trojan://C0ldyfh-vpnjantit.com@hu2.vpnjantit.com:4443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=hu2.vpnjantit.com&fp=android#v2go%20%7C%20%F0%9F%87%AD%F0%9F%87%BA%20HU%20%7C%20TROJAN%20%7C%20291
-vless://56cba26b-efcb-40d0-838a-d66df2dd516f@38.180.109.174:443?encryption=none&type=ws&host=sni.868001.xyz&path=%2Fproxyip%3Dtw.william.us.ci%3Fuuid%3D82bc2875-3fee-49d1-ab29-e108a7b1e5f9fp%3Dchrome&security=tls&fp=chrome&sni=sni.868001.xyz#v2go%20%7C%20%F0%9F%87%AD%F0%9F%87%BA%20HU%20%7C%20VLESS%20%7C%20516
+trojan://C0ldyfh-vpnjantit.com@hu2.vpnjantit.com:4443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=hu2.vpnjantit.com&fp=android#v2go%20%7C%20%F0%9F%87%AD%F0%9F%87%BA%20HU%20%7C%20TROJAN%20%7C%20186

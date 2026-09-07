@@ -1,3 +1,2 @@
-vless://06c4e938-2954-478f-a870-ca1b163e30e9@94.183.170.135:443/?type=ws&encryption=none&flow=#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B7%20IR%20%7C%20VLESS%20%7C%20385
-vless://9d9e3421-5652-4804-85ba-238355b948ab@94.183.170.248:443?encryption=none&security=none&type=ws#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B7%20IR%20%7C%20VLESS%20%7C%20577
-vless://dc3f60be-490e-450b-bed1-ae9ae4c5fa98@tun.trt1379.site:8880?Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&encryption=none&security=none&type=tcp#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B7%20IR%20%7C%20VLESS%20%7C%20649
+vless://06c4e938-2954-478f-a870-ca1b163e30e9@94.183.170.135:443/?type=ws&encryption=none&flow=#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B7%20IR%20%7C%20VLESS%20%7C%20269
+vless://9d9e3421-5652-4804-85ba-238355b948ab@94.183.170.248:443?encryption=none&security=none&type=ws#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B7%20IR%20%7C%20VLESS%20%7C%20473
