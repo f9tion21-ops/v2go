@@ -1,0 +1,1 @@
+trojan://humanity@185.18.250.252:443/?type=ws&host=www.calmlunch.com&path=%2Fassignment&security=tls&sni=www.calmlunch.com&allowInsecure=1#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%AD%20CH%20%7C%20TROJAN%20%7C%20345
