@@ -1,0 +1,1 @@
+vless://d9224de0-fcff-4534-bfcb-1d7bdb1453e8@blacknet0.blacknet89.workers.dev:443?security=tls&type=ws&path=%2FeyJqdW5rIjoiaEZzc0lFSmlmbHdNUWYiLCJwcm90b2NvbCI6InZsIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119%3Fed%3D2560&fp=qq#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%B3%20CN%20%7C%20VLESS%20%7C%20987
