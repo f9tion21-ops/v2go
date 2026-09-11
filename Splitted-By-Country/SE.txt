@@ -1,2 +1,0 @@
-vless://bd29f019-85a2-43f6-b10a-e91dbdf58ee3@138.124.29.78:443?sni=yastatic.net&mode=auto&pbk=zecFPSPQrkRM2o4grOw2cvhmq05kyZGTmO0xbFkvZF4&security=reality&fp=firefox&encryption=none&type=xhttp&path=%2FhanBham0QSktwSruCtIbKI6PCsj&sid=71fb59bc#v2go%20%7C%20%F0%9F%87%B8%F0%9F%87%AA%20SE%20%7C%20VLESS%20%7C%20153
-ss://YWVzLTI1Ni1nY206QXhJWVd0c2tKV0lJYWVmVw@70.34.212.124:8388#v2go%20%7C%20%F0%9F%87%B8%F0%9F%87%AA%20SE%20%7C%20SS%20%7C%20531
