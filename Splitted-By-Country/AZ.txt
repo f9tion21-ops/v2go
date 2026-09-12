@@ -1,0 +1,1 @@
+vless://f751c2fe-0772-4613-a5df-12155d170b10@az-plus.guard-net.ir:2053?encryption=none&type=tcp&flow=xtls-rprx-vision&security=reality&sni=play.google.com&fp=chrome&pbk=B7vii9FP73MJjkANk7rKS1pje2jkZ6NR0qTYQYMofCI&sid=b0ee0410824301c0&allowInsecure=1#v2go%20%7C%20%F0%9F%87%A6%F0%9F%87%BF%20AZ%20%7C%20VLESS%20%7C%20620
