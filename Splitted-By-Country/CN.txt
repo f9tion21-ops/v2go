@@ -1,1 +1,1 @@
-vless://5aaa5259-f924-4682-a4a3-149d472a9dcc@8.148.237.121:52683?type=tcp#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%B3%20CN%20%7C%20VLESS%20%7C%20582
+vless://26b35808-f1e1-4b97-8c69-46796f058d8b@172.67.174.249:443?ed=2560&eh=Sec-WebSocket-Protocol&encryption=none&host=ezaccess-project-9138d4.5f6on.workers.dev&path=%2FeyJqdW5rIjoicG9pMkt4TDY2TVNtRSIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbXX0%3D&security=tls&sni=ezaccess-project-9138d4.5f6on.workers.dev&type=ws#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%B3%20CN%20%7C%20VLESS%20%7C%20715
