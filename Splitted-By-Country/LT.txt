@@ -1,1 +1,0 @@
-vless://026f58a9-b36e-4204-8f8d-54c5374163da@188.225.24.201:443?security=reality&encryption=none&pbk=XhzNlmMTdYr2pYTqiNNP6qWe7BkAgVHU-kZWXc9u9hY&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=app11.betust.net&sid=91c2269c#v2go%20%7C%20%F0%9F%87%B1%F0%9F%87%B9%20LT%20%7C%20VLESS%20%7C%20139
