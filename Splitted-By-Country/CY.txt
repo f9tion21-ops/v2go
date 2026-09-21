@@ -1,0 +1,1 @@
+vless://35144244-d73c-44c0-97ae-8b8003c2214a@www.sorfema.ir:2052?alpn=h2%2Chttp%2F1.1&encryption=none&fp=ios&security=tls&sni=www.sorfema.ir&type=tcp#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BE%20CY%20%7C%20VLESS%20%7C%20432
