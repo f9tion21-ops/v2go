@@ -1,1 +1,0 @@
-vless://a1e52c5b-9594-4647-a0eb-8d0aac044f62@irgc.my-test-bench.ir:8443?alpn=h2,http/1.1&encryption=none&fp=chrome&host=irgc.my-test-bench.ir&path=/dl-traffic/&security=tls&sni=irgc.my-test-bench.ir&type=ws#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%BE%20CY%20%7C%20VLESS%20%7C%20288
