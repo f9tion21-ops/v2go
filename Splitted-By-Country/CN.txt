@@ -1,0 +1,1 @@
+vless://1e534c59-85c2-4042-a407-e491f68cb3a5@port2.axiomed.ir:443?encryption=none&type=ws&host=kjz42cni3-krcuj2-gqs8ves15.fornewiran-1010.workers.dev&path=%2Fvl%2FZ8Ag5xQbwmhIHsvyDj3%3Fed%3D2560&security=tls&alpn=http%2F1.1&fp=chrome&sni=kJz42CNi3-kRCUj2-gQs8vEs15.foRNeWiRAN-1010.wOrKERs.dEV#v2go%20%7C%20%F0%9F%87%A8%F0%9F%87%B3%20CN%20%7C%20VLESS%20%7C%20495
