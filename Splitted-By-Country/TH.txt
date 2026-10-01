@@ -1,1 +1,0 @@
-trojan://Trojan%4082164024@th1.zestapp778.com:443?type=tcp&security=tls&sni=th1.zestapp778.com&fp=safari#v2go%20%7C%20%F0%9F%87%B9%F0%9F%87%AD%20TH%20%7C%20TROJAN%20%7C%20153
