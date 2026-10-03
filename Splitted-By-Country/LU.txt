@@ -1,5 +1,2 @@
-trojan://UX82473651@cheerful-swan.rooster465.autos:443?security=tls&sni=cheerful-swan.rooster465.autos&allowInsecure=1&insecure=1&type=tcp#v2go%20%7C%20%F0%9F%87%B1%F0%9F%87%BA%20LU%20%7C%20TROJAN%20%7C%2047
-vless://8325bd97-b77c-4917-acaa-2446e9e8cc03@193.57.88.7:443?encryption=none&fp=firefox&pbk=mzrVbIsEggpJfXR8M7yxki2vgv3sXWQdy1bGhXqatUY&security=reality&serviceName=haknewhpjmv&sid=79651ae525860543&sni=vk.com&type=grpc#v2go%20%7C%20%F0%9F%87%B1%F0%9F%87%BA%20LU%20%7C%20VLESS%20%7C%20145
-vless://8e8ea5d2-6941-40fb-9efe-f9062b11b2b9@176.108.242.55:5002?&security=tls&fp=chrome&sni=lm.centermass.net&type=ws&headerType=none&path=media.playback.v1.SessionGateway#v2go%20%7C%20%F0%9F%87%B1%F0%9F%87%BA%20LU%20%7C%20VLESS%20%7C%20366
-trojan://UX82473651@202.78.163.237:443?security=tls&sni=cheerful-swan.rooster465.autos&path=/#v2go%20%7C%20%F0%9F%87%B1%F0%9F%87%BA%20LU%20%7C%20TROJAN%20%7C%20585
-vless://43692033-a184-43e5-8c65-faeeef6b0698@107.189.7.176:33289/?Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&type=tcp&encryption=none&flow=&security=tls&sni=&alpn=h2%2Chttp%2F1.1&fp=chrome#v2go%20%7C%20%F0%9F%87%B1%F0%9F%87%BA%20LU%20%7C%20VLESS%20%7C%20703
+trojan://UX82473651@202.78.163.237:443?security=tls&sni=cheerful-swan.rooster465.autos&path=/#v2go%20%7C%20%F0%9F%87%B1%F0%9F%87%BA%20LU%20%7C%20TROJAN%20%7C%20455
+trojan://UX82473651@cheerful-swan.rooster465.autos:443?mux=1&allowInsecure=1&sni=cheerful-swan.rooster465.autos#v2go%20%7C%20%F0%9F%87%B1%F0%9F%87%BA%20LU%20%7C%20TROJAN%20%7C%20456
