@@ -5,44 +5,36 @@ on:
     branches:
       - main
   schedule:
-    - cron: "*/20 * * * *"  # Every 6 hours
+    - cron: "0 * * * *"  # Every 1 hour
   workflow_dispatch:  # Allow manual trigger
-    
+
+# The live test makes a run take minutes, not seconds. Without this, an hourly
+# schedule plus the push-to-main this workflow itself creates would stack runs.
+concurrency:
+  group: update-configs
+  cancel-in-progress: true
+
 jobs:
   update-configs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
-        fetch-depth: 0  # Fetch full history for rebase
-        
-    - name: Configure Git and rebase with upstream
+        fetch-depth: 1  # Shallow clone: only latest commit needed for build + aggregator
+
+    - name: Configure Git and sync with latest main
       run: |
-        # Configure git
         git config --global user.name "GitHub Actions"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        
-        # Add upstream remote if it doesn't exist
-        if ! git remote | grep -q upstream; then
-          git remote add upstream https://github.com/Danialsamadi/v2go.git
-        fi
-        
-        # Fetch latest changes from upstream
-        git fetch upstream main
-        
-        # Rebase current branch with upstream main to avoid conflicts
-        git rebase upstream/main || {
-          echo "Rebase failed, attempting to resolve conflicts..."
-          git rebase --abort
-          git reset --hard upstream/main
-        }
+        # Rebase onto latest main (handles concurrent schedule/push runs)
+        git pull --rebase origin main
       
     - name: Set up Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v6
       with:
-        go-version: '1.26'
+        go-version: '1.26.5'
         cache: true
         
     - name: Build and run Go aggregator
@@ -55,6 +47,11 @@ jobs:
         ulimit -n 65535
         ./aggregator
         echo "Config processing completed successfully!"
+      env:
+        # Each live test runs an embedded xray-core instance. Accuracy degrades
+        # above ~500 concurrent (network saturates, live configs time out and
+        # read as dead) — raising this makes results WORSE, not faster.
+        V2GO_TEST_CONCURRENCY: "500"
       
     - name: Verify output files
       run: |
@@ -72,9 +69,9 @@ jobs:
         ls -la Base64/ 2>/dev/null || echo "No Base64 directory found"
         
         # Count total configs and show file sizes
-        if [ -f "All_Configs_Sub.txt" ]; then
-          TOTAL_CONFIGS=$(wc -l < All_Configs_Sub.txt)
-          FILE_SIZE=$(du -h All_Configs_Sub.txt | cut -f1)
+        if [ -f "AllConfigsSub.txt" ]; then
+          TOTAL_CONFIGS=$(wc -l < AllConfigsSub.txt)
+          FILE_SIZE=$(du -h AllConfigsSub.txt | cut -f1)
           echo "\nMain config file: $TOTAL_CONFIGS configurations ($FILE_SIZE)"
         else
           echo "\nMain config file not found - checking if it was split..."
@@ -117,8 +114,7 @@ jobs:
         }
         
         # Handle potentially large files
-        handle_large_file "All_Configs_Sub.txt" "All_Configs_Sub"
-        handle_large_file "All_Configs_base64_Sub.txt" "All_Configs_base64_Sub"
+        handle_large_file "AllConfigsSub.txt" "AllConfigsSub"
         
         # Handle protocol files
         if [ -d "Splitted-By-Protocol" ]; then
@@ -131,13 +127,16 @@ jobs:
         fi
         
     - name: Commit and push changes
-      uses: EndBug/add-and-commit@v9
+      uses: EndBug/add-and-commit@v10
       with:
         author_name: "GitHub Actions"
         author_email: "github-actions[bot]@users.noreply.github.com"
-        message: "🚀 Fresh Update"
+        message: "Fresh update"
         add: "."
         default_author: github_actor
+        # The run takes minutes between checkout and push; if anything landed on
+        # main in that window, rebase onto it instead of failing with "fetch first".
+        pull: "--rebase --autostash"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -148,9 +147,12 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
+          # Needs full history for `git log -1 --format=%ct -- <file>`, but not the
+          # blobs — this repo's history is ~14GB. Partial clone fetches commits only.
           fetch-depth: 0
+          filter: blob:none
 
       - name: Delete sub files older than 24 hours
         run: |
