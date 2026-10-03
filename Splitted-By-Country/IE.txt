@@ -1,4 +1,3 @@
-trojan://UX82473651@loved-shark.rooster465.autos:443?allowInsecure=1&sni=loved-shark.rooster465.autos#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%AA%20IE%20%7C%20TROJAN%20%7C%20196
-trojan://Trojan%4082164024@3.255.76.207:443?allowInsecure=1&sni=ie.tronsg.com&type=tcp#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%AA%20IE%20%7C%20TROJAN%20%7C%20473
-trojan://Trojan%4082164024@ie.tronsg.com:443?allowInsecure=1&sni=ie.tronsg.com#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%AA%20IE%20%7C%20TROJAN%20%7C%20474
-vless://cb8fbad5-4f14-55bc-a24a-3510f47f4b1b@78.17.176.174:11515?encryption=none&flow=xtls-rprx-vision&fp=firefox&pbk=A826RSu-yeVM_t6v7kwHKasHSdfI9KOzUw3WaIa9SWc&security=reality&sid=65149fc5ba&sni=www.sony.com&type=tcp#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%AA%20IE%20%7C%20VLESS%20%7C%20538
+trojan://UX82473651@loved-shark.rooster465.autos:443?allowInsecure=1&sni=loved-shark.rooster465.autos#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%AA%20IE%20%7C%20TROJAN%20%7C%20255
+vless://cb8fbad5-4f14-55bc-a24a-3510f47f4b1b@assets.halyvanedorogo.ru:11515?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.sony.com&fp=chrome&pbk=A826RSu-yeVM_t6v7kwHKasHSdfI9KOzUw3WaIa9SWc&sid=65149fc5ba&spx=/EL8OY1VX47km1uf&type=tcp#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%AA%20IE%20%7C%20VLESS%20%7C%20349
+vless://7f86f371-5a85-48be-babc-7af1ae7ffb75@198.55.102.59:4443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=vk.com&fp=chrome&security=reality&pbk=9gYnZLxZAPxIKzu9e-cOLBpbCn9p9og9gBodOCh5HB8&sid=ce6767c3f1#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%AA%20IE%20%7C%20VLESS%20%7C%20483
