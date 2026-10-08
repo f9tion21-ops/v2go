@@ -1,2 +1,0 @@
-vless://06c4e938-2954-478f-a870-ca1b163e30e9@94.183.170.135:8443?security=tls&encryption=none&sni=estproxy4.lockdwn.com&fp=chrome&type=tcp&path=/#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B7%20IR%20%7C%20VLESS%20%7C%20342
-vless://56795a1d-0ffd-464f-86fb-c5eddd3ecce0@p1tun01.greewebservices.ir:38830?encryption=none&type=tcp&security=reality&sni=play.google.com&fp=ios&pbk=xQnXh5EfPDhcEBB7rRiLca33GYrMEeUa35domLL_yA8&sid=e3085d4f#v2go%20%7C%20%F0%9F%87%AE%F0%9F%87%B7%20IR%20%7C%20VLESS%20%7C%20501
