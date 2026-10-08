@@ -1,3 +1,19 @@
+// v2go - High-Performance V2Ray Config Aggregator (Go Edition)
+// Copyright (C) 2025  Danialsamadi
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 package main
 
 import (
@@ -12,17 +28,33 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"runtime/debug"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
 
 	"github.com/oschwald/geoip2-golang"
+
+	"v2ray-config-aggregator/internal/tester"
 )
 
 const (
 	timeout         = 20 * time.Second
 	maxWorkers      = 10
 	maxLinesPerFile = 500
+
+	// Live-test stage: one embedded xray-core instance per config.
+	// Measured on 17,213 real configs (concurrency -> working found / wall clock):
+	//   250 -> 1283 / 2m04s,  400 -> 1207 / 1m16s,  500 -> 1256 / 1m00s,
+	//   1000 -> 837-1288 / ~40s (unstable),  3000 -> 530 (network saturates,
+	//   live configs time out and read as dead).
+	// 500 is the accuracy plateau's fast edge. Per-config CPU is ~40us, so
+	// concurrency is purely a network knob — RAM and CPU never mattered.
+	// Override with V2GO_TEST_CONCURRENCY / V2GO_TEST_TIMEOUT if the runner differs.
+	testConcurrency = 500
+	testTimeoutSec  = 5
+	testURL         = "http://gstatic.com/generate_204"
 )
 
 var fixedText = `#profile-title: base64:8J+GkyBHaXRodWIgfCBEYW5pYWwgU2FtYWRpIPCfkI0=
@@ -72,12 +104,15 @@ var dirLinks = []string{
 	"https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/trojan.txt",
 	"https://raw.githubusercontent.com/Surfboardv2ray/TGParse/refs/heads/main/configtg.txt",
 	"https://raw.githubusercontent.com/shabane/kamaji/refs/heads/master/hub/merged.txt",
+	"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS_mobile.txt",
+	"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt",
+	"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_SS+All_RUS.txt",
+	"https://raw.githubusercontent.com/frank-vpl/servers/refs/heads/main/irbox",
 }
 
 type Result struct {
 	URL        string
 	Content    string
-	IsBase64   bool
 	StatusCode int
 	Error      error
 }
@@ -128,10 +163,21 @@ func main() {
 	// Filter for protocols
 	fmt.Println("Filtering configurations and removing duplicates...")
 	originalCount := len(allConfigs)
-	filteredConfigs, configsByCountry := filterForProtocols(allConfigs, protocols)
+	candidates := filterForProtocols(allConfigs, protocols)
 
-	fmt.Printf("Found %d unique valid configurations\n", len(filteredConfigs))
-	fmt.Printf("Removed %d duplicates\n", originalCount-len(filteredConfigs))
+	fmt.Printf("Found %d unique valid configurations\n", len(candidates))
+	fmt.Printf("Removed %d duplicates\n", originalCount-len(candidates))
+
+	// Live test: the TCP dial above only proves something answers on the port.
+	// This runs each config through an embedded xray-core instance and fetches
+	// a 204 endpoint through it, so only configs that actually pass traffic
+	// survive. Passing configs also report the IP they exit from, which is what
+	// the country tagging below is based on.
+	working := liveTest(candidates)
+	fmt.Printf("%d/%d configurations passed the live test\n", len(working), len(candidates))
+
+	// Name and group by the country of the measured exit IP
+	filteredConfigs, configsByCountry := nameAndGroup(working)
 
 	// Clean existing files
 	cleanExistingFiles(base64Folder)
@@ -164,7 +210,10 @@ func main() {
 	writeUpdateSummary(len(filteredConfigs), stats, processingTime, originalCount, failedLinks)
 
 	// Now sort configurations by protocol
-	sortConfigs()
+	sortConfigs(filteredConfigs)
+
+	// Separate configs sitting behind Cloudflare IPs (like v2ray-tester's cfcheck)
+	writeCloudflareFile(filteredConfigs)
 }
 
 func ensureDirectoriesExist() (string, error) {
@@ -242,7 +291,7 @@ func fetchAllConfigs(client *http.Client, base64Links, textLinks []string) ([]st
 }
 
 func fetchAndDecodeBase64(client *http.Client, url string) Result {
-	res := Result{URL: url, IsBase64: true}
+	res := Result{URL: url}
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -282,7 +331,7 @@ func fetchAndDecodeBase64(client *http.Client, url string) Result {
 }
 
 func fetchText(client *http.Client, url string) Result {
-	res := Result{URL: url, IsBase64: false}
+	res := Result{URL: url}
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -339,50 +388,32 @@ func sanitizeConfig(config string) string {
 // isValidConfig checks whether a config has parameters that would crash V2Ray clients.
 // Returns false if the config should be skipped.
 func isValidConfig(config string) bool {
-	// Extract query string (between ? and #)
-	qStart := strings.Index(config, "?")
-	if qStart < 0 {
-		return true // no query params, nothing to validate
+	u, err := url.Parse(config)
+	if err != nil {
+		return true // unparseable here doesn't mean unusable; later stages decide
 	}
-	qEnd := strings.Index(config[qStart:], "#")
-	var query string
-	if qEnd >= 0 {
-		query = config[qStart+1 : qStart+qEnd]
-	} else {
-		query = config[qStart+1:]
-	}
-
-	// Parse query params and validate sni and path
-	for _, param := range strings.Split(query, "&") {
-		kv := strings.SplitN(param, "=", 2)
-		if len(kv) != 2 {
-			continue
-		}
-		key := strings.TrimSpace(kv[0])
-		val := strings.TrimSpace(kv[1])
-
-		if key == "sni" || key == "path" {
-			// Reject if value contains non-ASCII chars (emojis, CJK, etc.) or raw brackets
-			for _, r := range val {
-				if r > 127 || r == '[' || r == ']' {
-					return false
-				}
+	for _, key := range []string{"sni", "path"} {
+		// Reject if value contains non-ASCII chars (emojis, CJK, etc.) or raw brackets
+		for _, r := range u.Query().Get(key) {
+			if r > 127 || r == '[' || r == ']' {
+				return false
 			}
 		}
 	}
 	return true
 }
 
-func filterForProtocols(data []string, protocols []string) ([]string, map[string][]string) {
+// filterForProtocols screens raw configs down to unique, reachable candidates.
+// Naming and country assignment happen later, once the live test has revealed
+// each config's real exit IP.
+func filterForProtocols(data []string, protocols []string) []string {
 	var filtered []string
-	configsByCountry := make(map[string][]string)
 	seen := make(map[string]bool)
 	var mu sync.Mutex
 
 	type configRes struct {
-		line    string
-		country string
-		proto   string
+		line  string
+		proto string
 	}
 
 	// Use a worker pool for parallel country lookup and deduplication
@@ -415,16 +446,16 @@ func filterForProtocols(data []string, protocols []string) ([]string, map[string
 					}
 				}
 
-			if currentProtocol == "" {
-				continue
-			}
+				if currentProtocol == "" {
+					continue
+				}
 
-			// Validate config: reject configs with invalid SNI/path that crash clients
-			if !isValidConfig(line) {
-				continue
-			}
+				// Validate config: reject configs with invalid SNI/path that crash clients
+				if !isValidConfig(line) {
+					continue
+				}
 
-			// Smart Deduplication: Parse core identity (Address + Port)
+				// Smart Deduplication: Parse core identity (Address + Port)
 				identity := parseCoreIdentity(line, currentProtocol)
 
 				mu.Lock()
@@ -441,10 +472,11 @@ func filterForProtocols(data []string, protocols []string) ([]string, map[string
 					continue
 				}
 
-				// Country Lookup (Parallelized as it involves DNS)
-				country := getCountryInfo(line, currentProtocol)
-
-				results <- configRes{line: line, country: country, proto: currentProtocol}
+				// Country is deliberately NOT resolved here. GeoIP on the entry
+				// host is wrong for CDN-fronted and relaying servers, and doing
+				// it now would cost a DNS lookup per candidate. It is derived
+				// from the live test's exit IP instead, after testing.
+				results <- configRes{line: line, proto: currentProtocol}
 			}
 		}()
 	}
@@ -463,18 +495,57 @@ func filterForProtocols(data []string, protocols []string) ([]string, map[string
 	}()
 
 	for res := range results {
-		// Standardize the name sequentially to have correct indexing
-		cleanLine := standardizeName(res.line, res.proto, len(filtered)+1, res.country)
-		filtered = append(filtered, cleanLine)
-
-		countryKey := res.country
-		if countryKey == "" {
-			countryKey = "Unknown"
-		}
-		configsByCountry[countryKey] = append(configsByCountry[countryKey], cleanLine)
+		filtered = append(filtered, res.line)
 	}
 
-	return filtered, configsByCountry
+	return filtered
+}
+
+// nameAndGroup assigns each working config its country, standardized name and
+// index, and groups the renamed configs by country.
+//
+// Country comes from the exit IP measured through the proxy during the live
+// test. That is the address traffic actually emerges from; the entry host is
+// often a Cloudflare edge (anycast, so GeoIP is meaningless) or a relay that
+// forwards to a different country. Entry-host GeoIP is used only as a fallback
+// when the exit probe returned nothing.
+func nameAndGroup(results []tester.Result) ([]string, map[string][]string) {
+	var named []string
+	byCountry := make(map[string][]string)
+
+	for _, r := range results {
+		protocol := protocolOf(r.Link)
+		country := countryOfIP(net.ParseIP(r.ExitIP))
+		if country == "" {
+			host, _ := getHostPort(r.Link, protocol)
+			country = countryOfHost(host)
+		}
+
+		line := standardizeName(r.Link, protocol, len(named)+1, country)
+		named = append(named, line)
+
+		key := country
+		if key == "" {
+			key = "Unknown"
+		}
+		byCountry[key] = append(byCountry[key], line)
+	}
+
+	return named, byCountry
+}
+
+// protocolOf reports which entry of `protocols` a config line starts with.
+func protocolOf(line string) string {
+	for _, protocol := range protocols {
+		prefix := protocol
+		if !strings.HasSuffix(prefix, "://") && protocol != "warp://" {
+			prefix += "://"
+		}
+		if strings.HasPrefix(line, prefix) {
+			return protocol
+		}
+	}
+	return ""
 }
 
 // standardizeName renames a configuration to a professional format: v2go | 🇩🇪 DE | Protocol | ID
@@ -566,112 +637,58 @@ func parseCoreIdentity(config string, protocol string) string {
 	config = strings.TrimSpace(config)
 
 	switch protocol {
-	case "vmess":
-		trimmed := strings.TrimPrefix(config, "vmess://")
-		decoded, err := decodeBase64([]byte(trimmed))
-		if err != nil {
-			return config // Fallback to full string if decoding fails
-		}
-		var data struct {
-			Add  string      `json:"add"`
-			Port interface{} `json:"port"` // Use interface because port can be string or int
-		}
-		if err := json.Unmarshal([]byte(decoded), &data); err != nil {
+	case "vless":
+		trimmed := strings.TrimPrefix(config, "vless://")
+		atIdx := strings.Index(trimmed, "@")
+		if atIdx < 0 {
 			return config
 		}
-		return fmt.Sprintf("vmess://%s:%v", data.Add, data.Port)
-
-	case "ssr":
-		trimmed := strings.TrimPrefix(config, "ssr://")
-		decoded, err := decodeBase64([]byte(trimmed))
-		if err != nil {
-			// SSR padding is often weird, try simple trim if padding fails
-			return config
-		}
-		// SSR format: host:port:protocol:method:obfs:base64pass/?obfsparam=...
-		parts := strings.Split(decoded, ":")
-		if len(parts) >= 2 {
-			return fmt.Sprintf("ssr://%s:%s", parts[0], parts[1])
+		uuid := trimmed[:atIdx]
+		if uuid != "" {
+			return "vless://" + uuid
 		}
 		return config
 
 	default:
-		u, err := url.Parse(config)
-		if err != nil {
-			return config
-		}
-		host := u.Hostname()
-		port := u.Port()
+		host, port := getHostPort(config, protocol)
 		if host == "" {
-			return config
+			return config // Fallback to full string if the config can't be parsed
 		}
 		return fmt.Sprintf("%s://%s:%s", protocol, host, port)
 	}
 }
 
-func getCountryInfo(config, protocol string) string {
-	if geoDB == nil {
+// countryOfIP looks up an IP in the GeoLite2 database. Handles IPv4 and IPv6.
+func countryOfIP(ip net.IP) string {
+	if geoDB == nil || ip == nil {
 		return ""
 	}
-
-	host := ""
-	switch protocol {
-	case "vmess":
-		trimmed := strings.TrimPrefix(config, "vmess://")
-		decoded, err := decodeBase64([]byte(trimmed))
-		if err == nil {
-			var data struct {
-				Add string `json:"add"`
-			}
-			json.Unmarshal([]byte(decoded), &data)
-			host = data.Add
-		}
-	case "ssr":
-		trimmed := strings.TrimPrefix(config, "ssr://")
-		decoded, err := decodeBase64([]byte(trimmed))
-		if err == nil {
-			parts := strings.Split(decoded, ":")
-			if len(parts) > 0 {
-				host = parts[0]
-			}
-		}
-	default:
-		u, err := url.Parse(config)
-		if err == nil {
-			host = u.Hostname()
-		}
-	}
-
-	if host == "" {
+	record, err := geoDB.Country(ip)
+	if err != nil {
 		return ""
 	}
+	return record.Country.IsoCode
+}
 
-	// Check cache
+// countryOfHost resolves a host (IP literal or domain) and geolocates it.
+// Fallback only — the entry host is an unreliable indicator of where a proxy
+// actually exits, so this is used when the live test yielded no exit IP.
+func countryOfHost(host string) string {
+	if geoDB == nil || host == "" {
+		return ""
+	}
 	if val, ok := geoCache.Load(host); ok {
 		return val.(string)
 	}
 
-	// Resolve IP if it's a domain
 	ip := net.ParseIP(host)
 	if ip == nil {
-		ips, err := net.LookupIP(host)
-		if err == nil && len(ips) > 0 {
+		if ips, err := net.LookupIP(host); err == nil && len(ips) > 0 {
 			ip = ips[0]
 		}
 	}
 
-	if ip == nil {
-		geoCache.Store(host, "")
-		return ""
-	}
-
-	record, err := geoDB.Country(ip)
-	if err != nil {
-		geoCache.Store(host, "")
-		return ""
-	}
-
-	code := record.Country.IsoCode
+	code := countryOfIP(ip)
 	geoCache.Store(host, code)
 	return code
 }
@@ -915,6 +932,37 @@ func checkPort(host, port string) bool {
 	}
 	conn.Close()
 	return true
+}
+
+func envInt(key string, fallback int) int {
+	if v, err := strconv.Atoi(os.Getenv(key)); err == nil && v > 0 {
+		return v
+	}
+	return fallback
+}
+
+// liveTest returns the results for configs that actually carried traffic,
+// each carrying the exit IP observed through the proxy.
+func liveTest(configs []string) []tester.Result {
+	if len(configs) == 0 {
+		return nil
+	}
+
+	concurrent := envInt("V2GO_TEST_CONCURRENCY", testConcurrency)
+	timeoutSec := envInt("V2GO_TEST_TIMEOUT", testTimeoutSec)
+
+	// Each in-flight xray instance parks goroutines in syscalls, which become OS
+	// threads. Go's default cap is 10000 and blowing it is a hard crash
+	// ("runtime: failed to create new OS thread"), not a slowdown.
+	debug.SetMaxThreads(10000 + 10*concurrent)
+
+	kept := make([]tester.Result, 0, len(configs))
+	for _, r := range tester.TestAll(configs, testURL, timeoutSec, concurrent) {
+		if r.DelayMs >= 0 {
+			kept = append(kept, r)
+		}
+	}
+	return kept
 }
 
 func getHostPort(config, protocol string) (string, string) {
